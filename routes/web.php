@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Cart;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -52,10 +55,12 @@ route::get('/stripe/{totalPrice}',[HomeController::class,'stripe']);
 
 route::post('stripe/{totalPrice}',[HomeController::class,'stripePost'])->name('stripe.post');
 
-route::get('/ticket',function (){
+route::get("/ticket-pdf",function (){
+    $order_id=order::all()->last()->created_at;
+    $ticket=order::where('created_at','=',$order_id)->get();
 
-   $pdf = PDF::loadView('home.ticket');
-   return $pdf->download('ticket.pdf');
+    $pdf = PDF::loadView('home.ticket',compact('ticket'));
+    return $pdf->download('ticket.pdf');
 });
 
 route::get("/search",[HomeController::class,"search"]);

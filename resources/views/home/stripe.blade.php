@@ -98,7 +98,7 @@
         <div style="text-align: center">
             <h4>Link to download ticket</h4>
             <h5 style="color: red">Please,download it before you exit page</h5>
-            <a href="/ticket">Download your ticket</a>
+            <a href="{{url('ticket-pdf')}}">Download your ticket</a>
         </div>
     @endif
 

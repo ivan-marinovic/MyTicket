@@ -127,22 +127,21 @@ class HomeController extends Controller
             $order=new order;
             $order->name=$data->name;
             $order->email=$data->email;
-            $order->email=$data->phone;
-            $order->email=$data->user_id;
+            $order->phone=$data->phone;
+            $order->user_id=$data->user_id;
             $order->price=$data->price;
             $order->location=$data->location;
+            $order->date=$data->date;
             $order->quantity=$data->quantity;
             $order->event_title=$data->event_title;
             $order->event_id=$data->event_id;
             $order->payment_status='paid';
-
-
             $order->save();
+
             $cart_id=$data->id;
             $cart=cart::find($cart_id);
             $cart->delete();
         }
-
 
 
         Session::flash('success', 'Payment successful!');
@@ -151,11 +150,13 @@ class HomeController extends Controller
         return back();
     }
 
-    public function search(Request $request)
+
+
+   /* public function search(Request $request)
     {
         $search=$request->search;
         $events=event::where('title','Like','%'.$search.'%')->get();
         return view('home.section',compact('events'));
-    }
+    }*/
 
 }

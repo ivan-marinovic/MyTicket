@@ -8,7 +8,18 @@
     <title>Your Ticket</title>
 </head>
 <body>
-    <h1>Your Ticket</h1>
-
+<a href="ticket-pdf">Save as pdf</a>
+<div class="container mt-3">
+    <h2 style="text-align: center;font-size: 22px;margin-bottom: 7px">cut out your tickets for use</h2>
+        @foreach($ticket as $ticket)
+            <div style="border: black 2px solid;margin-bottom: 10px;width: 70%">
+                <h3>Event title: {{$ticket->event_title}}</h3>
+                <h4>Location: {{$ticket->location}}</h4>
+                <h4>Location: {{$ticket->date}}</h4>
+                <h4>Price: {{$ticket->price}}€</h4>
+                <h4>*by MyTicket*</h4>
+            </div>
+        @endforeach
+    </div>
 </body>
 </html>
