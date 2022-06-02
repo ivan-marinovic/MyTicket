@@ -14,9 +14,15 @@ use App\Models\Cart;
 
 use App\Models\Order;
 
+use App\Models\Category;
+
+use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\TableUpdate;
 use Session;
 
 use Stripe;
+
+
 
 
 
@@ -138,25 +144,23 @@ class HomeController extends Controller
             $order->payment_status='paid';
             $order->save();
 
+
+
+
             $cart_id=$data->id;
             $cart=cart::find($cart_id);
             $cart->delete();
-        }
 
+
+        }
 
         Session::flash('success', 'Payment successful!');
 
-
         return back();
+
+
     }
 
 
-
-   /* public function search(Request $request)
-    {
-        $search=$request->search;
-        $events=event::where('title','Like','%'.$search.'%')->get();
-        return view('home.section',compact('events'));
-    }*/
 
 }

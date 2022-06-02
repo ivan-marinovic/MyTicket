@@ -56,14 +56,14 @@ route::get('/stripe/{totalPrice}',[HomeController::class,'stripe']);
 route::post('stripe/{totalPrice}',[HomeController::class,'stripePost'])->name('stripe.post');
 
 route::get("/ticket-pdf",function (){
+    $id=Auth::user()->id;
     $order_id=order::all()->last()->created_at;
-    $ticket=order::where('created_at','=',$order_id)->get();
+    $ticket=order::where('created_at','=',$order_id)->where('user_id','=',$id)->get();
 
     $pdf = PDF::loadView('home.ticket',compact('ticket'));
     return $pdf->download('ticket.pdf');
 });
 
-route::get("/search",[HomeController::class,"search"]);
-
+route::get('/sorting',[HomeController::class,'sorting']);
 
 

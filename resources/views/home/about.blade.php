@@ -19,19 +19,20 @@
 
 
 <div class="row" style="margin-top: 10px;margin-left: 3px;margin-bottom: 5px">
-    <div class="col-md-4" style="border: grey solid 1px">
-        <h1 style="margin-top: 10px">O projektu</h1>
+    <div class="col-md-4" style="border: grey solid 2px">
+        <h1 style="margin-top: 10px" class="fw-bolder">O projektu</h1>
         <h6>MyTicket sustav za online kupnju karta</h6>
         <p>Korištene tehnologije su:</p>
-        <p>HTML,CSS,Bootstrap,JavaScript,MySql,Laravel.</p>
+        <p>HTML,CSS,Bootstrap,JavaScript,</p>
+        <p>MySql,Laravel.</p>
         <p>Za više informacija pogledati viziju projekta</p>
-        <a style="margin-bottom: 2px" href="https://drive.google.com/file/d/1jjioa3Iat6rxJfmm6S4LWKIFrKtNwlSQ/view?usp=sharing" class="btn btn-primary">Pogledaj viziju</a>
+        <a style="margin-bottom: 2px;margin-top: 2px" href="https://drive.google.com/file/d/1jjioa3Iat6rxJfmm6S4LWKIFrKtNwlSQ/view?usp=sharing" class="btn btn-primary">Pogledaj viziju</a>
     </div>
     <div class="col-md-1">
 
     </div>
-    <div class="col-md-6" style="border: grey solid 1px">
-        <h1 style="margin-top: 10px">Naš tim</h1>
+    <div class="col-md-6" style="border: grey solid 2px">
+        <h1 style="margin-top: 10px" class="fw-bolder">Naš tim</h1>
         <div>
             <h6>Filip Filipović</h6>
             <p>Student 3.godine računarstva,Fsre Mostar</p>
