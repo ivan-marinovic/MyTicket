@@ -21,9 +21,7 @@ use mysql_xdevapi\TableUpdate;
 use Session;
 
 use Stripe;
-
-
-
+use function Symfony\Component\String\b;
 
 
 class HomeController extends Controller
@@ -33,12 +31,13 @@ class HomeController extends Controller
     {
         $event = Event::paginate(4);
 
-       if(request()->sort == 'asc')
+
+       if(request()->sort == 'low-to-high')
         {
-            $event = Event::orderBy('price')->paginate(4);
+            $event = Event::orderBy('price','asc')->paginate(4);
         }
 
-       if(request()->sort == 'desc')
+       if(request()->sort == 'high-to-low')
        {
            $event = Event::orderBy('price', 'desc')->paginate(4);
        }
@@ -174,13 +173,9 @@ class HomeController extends Controller
             $order->payment_status='paid';
             $order->save();
 
-
-            /*pokusavam izbrisat qunatity iz eventa za koliko je kupljeno
             $event_id=$order->event_id;
-            $events=event::where('id','=',$event_id)->get();
-            $variable = $order->quantity;
-            $variable2 = $events->quantity - $variable;
-            */
+            $quantity=$order->quantity;
+            Event::where('id',$event_id)->decrement('quantity',$quantity);
 
             $cart_id=$data->id;
             $cart=cart::find($cart_id);
