@@ -11,7 +11,6 @@ use App\Http\Controllers\AdminController;
 
 route::get('/',[HomeController::class,'index'])->name('user-page.index');
 
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

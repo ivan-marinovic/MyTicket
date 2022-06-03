@@ -31,22 +31,35 @@ class HomeController extends Controller
 
     public function index()
     {
-       $event = Event::paginate(4);
-       $category=Category::all();
-       $data=Event::all();
+        $event = Event::paginate(4);
 
-        if (request()->sort=='asc')
+       if(request()->sort == 'asc')
         {
-            $data=Event::orderBy('price','ASC')->get();
+            $event = Event::orderBy('price')->paginate(4);
         }
 
-        if (request()->sort=='desc')
+       if(request()->sort == 'desc')
+       {
+           $event = Event::orderBy('price', 'desc')->paginate(4);
+       }
+
+       if(request()->sort == 'new')
+       {
+           $event = Event::orderBy('date', 'asc')->paginate(4);
+       }
+
+        if(request()->sort == 'old')
         {
-            $data=Event::orderBy('price','DESC')->get();
+            $event = Event::orderBy('date', 'desc')->paginate(4);
         }
 
+        if(request()->sort == 'abc')
+        {
+            $event = Event::orderBy('title', 'asc')->paginate(4);
+        }
 
-        return view('home.user-page',compact('event','category','data'));
+        return view('home.user-page',compact('event'));
+
     }
 
 
@@ -62,8 +75,7 @@ class HomeController extends Controller
         }
         else {
             $event = Event::paginate(4);
-            $category = Category::all();
-            return view('home.user-page',compact('event','category'));
+            return view('home.user-page',compact('event'));
         }
     }
     public function event_details($id)
@@ -163,19 +175,22 @@ class HomeController extends Controller
             $order->save();
 
 
-
+            /*pokusavam izbrisat qunatity iz eventa za koliko je kupljeno
+            $event_id=$order->event_id;
+            $events=event::where('id','=',$event_id)->get();
+            $variable = $order->quantity;
+            $variable2 = $events->quantity - $variable;
+            */
 
             $cart_id=$data->id;
             $cart=cart::find($cart_id);
             $cart->delete();
-
-
         }
 
         Session::flash('success', 'Payment successful!');
 
-        return back();
 
+        return back();
 
     }
 

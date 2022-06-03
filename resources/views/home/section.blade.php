@@ -18,6 +18,7 @@
                             <!-- Product price-->
                             <h6>{{$events->price}} €</h6>
                             <h6>{{$events->location}}</h6>
+                            <h6>{{$events->date}}</h6>
                         </div>
                     </div>
                     <!-- Product actions-->
