@@ -9,7 +9,8 @@ use App\Http\Controllers\AdminController;
 
 
 
-route::get('/',[HomeController::class,'index']);
+route::get('/',[HomeController::class,'index'])->name('user-page.index');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -64,6 +65,6 @@ route::get("/ticket-pdf",function (){
     return $pdf->download('ticket.pdf');
 });
 
-route::get('/sorting',[HomeController::class,'sorting']);
+
 
 

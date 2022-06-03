@@ -31,9 +31,26 @@ class HomeController extends Controller
 
     public function index()
     {
-        $event = Event::paginate(4);
-        return view('home.user-page',compact('event'));
+       $event = Event::paginate(4);
+       $category=Category::all();
+       $data=Event::all();
+
+        if (request()->sort=='asc')
+        {
+            $data=Event::orderBy('price','ASC')->get();
+        }
+
+        if (request()->sort=='desc')
+        {
+            $data=Event::orderBy('price','DESC')->get();
+        }
+
+
+        return view('home.user-page',compact('event','category','data'));
     }
+
+
+
     public function redirect()
     {
 
@@ -45,7 +62,8 @@ class HomeController extends Controller
         }
         else {
             $event = Event::paginate(4);
-            return view('home.user-page',compact('event'));
+            $category = Category::all();
+            return view('home.user-page',compact('event','category'));
         }
     }
     public function event_details($id)

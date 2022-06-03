@@ -46,7 +46,7 @@
                     <?php  $currentDate=date("Y-m-d"); ?>
                     @if($currentDate < $event->date)
                         <div>
-                            <input type="number" name="quantity" value="1" min="1" style="width: 60px;margin-bottom: 2px">
+                            <input type="number" name="quantity" value="1" min="1" max="{{$event->quantity}}" style="width: 60px;margin-bottom: 2px">
                         </div>
                         <div style="margin-bottom: 10px">
                             <input type="submit" value="Add to Cart" style="margin-top: 2px;margin-bottom: 10px">
@@ -59,8 +59,7 @@
         </div>
     </div>
 
-<!-- Footer-->
-@include('home.footer')
+
 
 
 <!-- Bootstrap core JS-->
