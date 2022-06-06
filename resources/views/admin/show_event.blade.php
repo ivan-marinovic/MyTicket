@@ -44,12 +44,12 @@
     <div class="main-panel">
         <div class="content-wrapper">
 
-            @if(session()->has('message'))
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
-                    {{session()->get('message')}}
-                </div>
-            @endif
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                        {{session()->get('message')}}
+                    </div>
+                @endif
 
             <h2 class="font_size">All Events</h2>
         <div class="table-responsive">

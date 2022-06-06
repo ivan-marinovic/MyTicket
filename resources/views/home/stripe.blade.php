@@ -27,7 +27,7 @@
 
                     @if (Session::has('success'))
                         <div class="alert alert-success text-center">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                             <p>{{ Session::get('success') }}</p>
                         </div>
                     @endif
@@ -96,8 +96,7 @@
 
     @if (Session::has('success'))
         <div style="text-align: center">
-            <h4>Link to download ticket</h4>
-            <h5 style="color: red">Please,download it before you exit page</h5>
+            <h4 style="color: red">Please,download it before you exit page!</h4>
             <a href="{{url('ticket-pdf')}}">Download your ticket</a>
         </div>
     @endif

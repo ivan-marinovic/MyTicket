@@ -29,23 +29,38 @@ class HomeController extends Controller
 
     public function index()
     {
+        if(Auth::id())
+        {
+            return redirect('redirect');
+        }
+
+        else
+
         $event = Event::paginate(4);
 
+        return view('home.user-page',compact('event'));
 
-       if(request()->sort == 'low-to-high')
+    }
+
+
+    public function sorting()
+    {
+        $event = Event::paginate(4);
+
+        if(request()->sort == 'low-to-high')
         {
             $event = Event::orderBy('price','asc')->paginate(4);
         }
 
-       if(request()->sort == 'high-to-low')
-       {
-           $event = Event::orderBy('price', 'desc')->paginate(4);
-       }
+        if(request()->sort == 'high-to-low')
+        {
+            $event = Event::orderBy('price', 'desc')->paginate(4);
+        }
 
-       if(request()->sort == 'new')
-       {
-           $event = Event::orderBy('date', 'asc')->paginate(4);
-       }
+        if(request()->sort == 'new')
+        {
+            $event = Event::orderBy('date', 'asc')->paginate(4);
+        }
 
         if(request()->sort == 'old')
         {

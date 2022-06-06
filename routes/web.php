@@ -11,6 +11,8 @@ use App\Http\Controllers\AdminController;
 
 route::get('/',[HomeController::class,'index'])->name('user-page.index');
 
+route::get('/sorting',[HomeController::class,'sorting'])->name('user-page.sorting');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -63,6 +65,7 @@ route::get("/ticket-pdf",function (){
     $pdf = PDF::loadView('home.ticket',compact('ticket'));
     return $pdf->download('ticket.pdf');
 });
+
 
 
 
